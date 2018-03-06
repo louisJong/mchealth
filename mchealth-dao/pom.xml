@@ -17,11 +17,6 @@
     			<artifactId>mchealth-common</artifactId>
     			<version>1.0</version>
    		</dependency>
-		<dependency>
-		  <groupId>com.aliyun.oss</groupId>
-		  <artifactId>aliyun-sdk-oss</artifactId>
-		  <version>3.0.0</version>
-		</dependency>
    </dependencies>
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -74,9 +69,8 @@
 			</activation>
 			<build>
 				<filters>
-					<filter>src/main/conf/dev/hepet-core.properties</filter>
+					<filter>src/main/conf/dev/core.properties</filter>
 					<filter>src/main/conf/dev/log4j.properties</filter>
-					<filter>src/main/conf/dev/redis.properties</filter>
 	   			</filters>
    			</build>
 		</profile>
@@ -87,9 +81,8 @@
 			</activation>
 			<build>
 				<filters>
-					<filter>src/main/conf/pro/hepet-core.properties</filter>
+					<filter>src/main/conf/pro/core.properties</filter>
 					<filter>src/main/conf/pro/log4j.properties</filter>
-					<filter>src/main/conf/pro/redis.properties</filter>
 	   			</filters>
    			</build>
 			<properties>
