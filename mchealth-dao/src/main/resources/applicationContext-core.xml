@@ -21,7 +21,7 @@
 			</list>
 		</property>
 	</bean>
-	<context:component-scan base-package="com.song.project.mchealth" >
+	<context:component-scan base-package="com.song.project.mchealth.*" >
           <context:include-filter  type="annotation"  expression="org.springframework.stereotype.Repository"   />  
           <context:include-filter  type="annotation"  expression="org.springframework.stereotype.Component"    />  
 	</context:component-scan>
