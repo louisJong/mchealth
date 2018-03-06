@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding= "UTF-8" ?>        
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hepet_admin_user">
-<resultMap id="hepet_admin_user" type="com.project.hepet.model.HepetAdminUser">
+<resultMap id="hepet_admin_user" type="com.song.project.mchealth.dao.model.AdminUser">
 	<result column="id" property="id"/>
 	<result column="user_name" property="userName"/>
 	<result column="mobile" property="mobile"/>
@@ -18,7 +18,7 @@
 <select id="findByUserNameAndPwd" parameterType="hashmap"  resultMap="hepet_admin_user">
 	select * from hepet_admin_user where user_name=#{userName} and login_pwd=#{loginPwd}
 </select>  
-<insert id="insert"  parameterType="com.project.hepet.model.HepetAdminUser"  useGeneratedKeys="true" keyProperty="id">
+<insert id="insert"  parameterType="com.song.project.mchealth.dao.model.AdminUser"  useGeneratedKeys="true" keyProperty="id">
 	insert into hepet_admin_user(id ,user_name ,mobile ,email ,login_pwd ,create_user ,create_time ,update_time ,status)
    values(#{id,jdbcType=INTEGER} ,#{userName,jdbcType=VARCHAR} ,#{mobile,jdbcType=VARCHAR} ,#{email,jdbcType=VARCHAR} ,#{loginPwd,jdbcType=VARCHAR} ,#{createUser,jdbcType=VARCHAR} ,#{createTime,jdbcType=TIMESTAMP} ,#{updateTime,jdbcType=TIMESTAMP} ,#{status,jdbcType=TINYINT}) 
 </insert>
@@ -29,7 +29,7 @@
     (#{item.id,jdbcType=INTEGER} ,#{item.userName,jdbcType=VARCHAR} ,#{item.mobile,jdbcType=VARCHAR} ,#{item.email,jdbcType=VARCHAR} ,#{item.loginPwd,jdbcType=VARCHAR} ,#{item.createUser,jdbcType=VARCHAR} ,#{item.createTime,jdbcType=TIMESTAMP} ,#{item.updateTime,jdbcType=TIMESTAMP} ,#{item.status,jdbcType=TINYINT})
 	</foreach> 
 </insert>
-<update id="update"	parameterType="com.project.hepet.model.HepetAdminUser">
+<update id="update"	parameterType="com.song.project.mchealth.dao.model.AdminUser">
 	update hepet_admin_user
 <set>
 	<if test="mobile != null">mobile=#{mobile},</if>
@@ -39,5 +39,13 @@
 	<if test="status != null">status=#{status}</if>
 </set>
 	where id=#{id}
+</update>
+<update id="modifyLoginPwd" parameterType="hashmap">
+	update hepet_admin_user
+	<set>
+		<if test="newPwd != null">login_pwd=#{newPwd},</if>
+		update_time=now()
+	</set>
+	where id=#{userId} and login_pwd=#{oldPwd}
 </update>
 </mapper>

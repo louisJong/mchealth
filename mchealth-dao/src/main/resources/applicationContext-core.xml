@@ -17,31 +17,28 @@
 	<property name="ignoreUnresolvablePlaceholders" value="true" />   
 		<property name="locations">
 			<list>
-				 <value>classpath:mchealth-core.properties</value>
+				 <value>classpath:core.properties</value>
 			</list>
 		</property>
 	</bean>
-	<context:component-scan base-package="com.project.mchealth" >
-		  <context:include-filter  type="annotation"  expression="org.springframework.stereotype.Service"   />  
+	<context:component-scan base-package="com.song.project.mchealth" >
           <context:include-filter  type="annotation"  expression="org.springframework.stereotype.Repository"   />  
           <context:include-filter  type="annotation"  expression="org.springframework.stereotype.Component"    />  
-           <!-- <context:include-filter  type="annotation"  expression="org.springframework.stereotype.Component"    /> -->  
-          <context:exclude-filter type="annotation" expression="org.springframework.scheduling.annotation.Scheduled" />
 	</context:component-scan>
 	
 	<!-- 启动对@Aspectj的支持 true为cglib，false为jdk代理，为true的话，会导致拦截不了mybatis的mapper-->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
        	<bean id="mchealthDataSourceWriter" class="com.alibaba.druid.pool.DruidDataSource"  init-method="init" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="${mchealth.jdbc.url}" />
-		<property name="username" value="${mchealth.jdbc.username}" />
-		<property name="password"  value="${mchealth.jdbc.password}"></property> 
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password"  value="${jdbc.password}"/>
 		<!-- 配置过滤 -->
 		<property name="filters" value="stat" />
 		<!-- 配置初始化大小 -->
-		<property name="initialSize" value="${mchealth.jdbc.initialSize}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
 		<!-- 配置初始化最大 连接数 -->
-		<property name="maxActive" value="${mchealth.jdbc.maxActive}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
 		<!-- 配置初始化最小连接数 -->
 		<property name="minIdle" value="2" />
 		<!-- 配置获取连接等待超时的时间 -->
